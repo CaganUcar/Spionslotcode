@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spion Escape Slot</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            margin-top: 50px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Ctext x='0' y='75' font-size='75' fill='%23006600'%3E0101%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
+            transition: transform 0.5s ease-in-out;
+        }
+        .unlock-animation {
+            animation: unlock 1s ease-in-out;
+        }
+        @keyframes unlock {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); box-shadow: 0 0 20px rgba(0, 255, 0, 1); }
+            100% { transform: scale(1); }
+        }
+        select, input, button {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            background-color: #111;
+            color: #0f0;
+            border: 1px solid #0f0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        button {
+            background-color: #0f0;
+            color: #000;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #00cc00;
+        }
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #0f0;
+        }
+        .code-input {
+            display: none; /* Verberg de code-invoervelden standaard */
+        }
+        .unlock-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 255, 0, 0.9);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+            color: #000;
+            animation: blink 0.5s steps(2, start) infinite;
+            display: none;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="lockContainer">
+        <h1>🕵️‍♂️ Spionnen Slot</h1>
+        <p>Selecteer de 5 codekaarten die je hebt gedraaid:</p>
+        <select id="card1">
+            <option value="">- Kies -</option>
+            <option value="blauw">Blauw 1</option>
+            <option value="blauw">Blauw 2</option>
+            <option value="blauw">Blauw 3</option>
+            <option value="blauw">Blauw 4</option>
+            <option value="blauw">Blauw 5</option>
+            <option value="roze">Roze 1</option>
+            <option value="roze">Roze 2</option>
+            <option value="roze">Roze 3</option>
+            <option value="roze">Roze 4</option>
+            <option value="roze">Roze 5</option>
+            <option value="geel">Geel 1</option>
+            <option value="geel">Geel 2</option>
+            <option value="geel">Geel 3</option>
+            <option value="geel">Geel 4</option>
+            <option value="geel">Geel 5</option>
+            <option value="groen">Groen 1</option>
+            <option value="groen">Groen 2</option>
+            <option value="groen">Groen 3</option>
+            <option value="groen">Groen 4</option>
+            <option value="groen">Groen 5</option>
+        </select>
+        <select id="card2">
+            <option value="">- Kies -</option>
+            <option value="blauw">Blauw 1</option>
+            <option value="blauw">Blauw 2</option>
+            <option value="blauw">Blauw 3</option>
+            <option value="blauw">Blauw 4</option>
+            <option value="blauw">Blauw 5</option>
+            <option value="roze">Roze 1</option>
+            <option value="roze">Roze 2</option>
+            <option value="roze">Roze 3</option>
+            <option value="roze">Roze 4</option>
+            <option value="roze">Roze 5</option>
+            <option value="geel">Geel 1</option>
+            <option value="geel">Geel 2</option>
+            <option value="geel">Geel 3</option>
+            <option value="geel">Geel 4</option>
+            <option value="geel">Geel 5</option>
+            <option value="groen">Groen 1</option>
+            <option value="groen">Groen 2</option>
+            <option value="groen">Groen 3</option>
+            <option value="groen">Groen 4</option>
+            <option value="groen">Groen 5</option>
+        </select>
+        <select id="card3">
+            <option value="">- Kies -</option>
+            <option value="blauw">Blauw 1</option>
+            <option value="blauw">Blauw 2</option>
+            <option value="blauw">Blauw 3</option>
+            <option value="blauw">Blauw 4</option>
+            <option value="blauw">Blauw 5</option>
+            <option value="roze">Roze 1</option>
+            <option value="roze">Roze 2</option>
+            <option value="roze">Roze 3</option>
+            <option value="roze">Roze 4</option>
+            <option value="roze">Roze 5</option>
+            <option value="geel">Geel 1</option>
+            <option value="geel">Geel 2</option>
+            <option value="geel">Geel 3</option>
+            <option value="geel">Geel 4</option>
+            <option value="geel">Geel 5</option>
+            <option value="groen">Groen 1</option>
+            <option value="groen">Groen 2</option>
+            <option value="groen">Groen 3</option>
+            <option value="groen">Groen 4</option>
+            <option value="groen">Groen 5</option>
+        </select>
+        <select id="card4">
+            <option value="">- Kies -</option>
+            <option value="blauw">Blauw 1</option>
+            <option value="blauw">Blauw 2</option>
+            <option value="blauw">Blauw 3</option>
+            <option value="blauw">Blauw 4</option>
+            <option value="blauw">Blauw 5</option>
+            <option value="roze">Roze 1</option>
+            <option value="roze">Roze 2</option>
+            <option value="roze">Roze 3</option>
+            <option value="roze">Roze 4</option>
+            <option value="roze">Roze 5</option>
+            <option value="geel">Geel 1</option>
+            <option value="geel">Geel 2</option>
+            <option value="geel">Geel 3</option>
+            <option value="geel">Geel 4</option>
+            <option value="geel">Geel 5</option>
+            <option value="groen">Groen 1</option>
+            <option value="groen">Groen 2</option>
+            <option value="groen">Groen 3</option>
+            <option value="groen">Groen 4</option>
+            <option value="groen">Groen 5</option>
+        </select>
+        <select id="card5">
+            <option value="">- Kies -</option>
+            <option value="blauw">Blauw 1</option>
+            <option value="blauw">Blauw 2</option>
+            <option value="blauw">Blauw 3</option>
+            <option value="blauw">Blauw 4</option>
+            <option value="blauw">Blauw 5</option>
+            <option value="roze">Roze 1</option>
+            <option value="roze">Roze 2</option>
+            <option value="roze">Roze 3</option>
+            <option value="roze">Roze 4</option>
+            <option value="roze">Roze 5</option>
+            <option value="geel">Geel 1</option>
+            <option value="geel">Geel 2</option>
+            <option value="geel">Geel 3</option>
+            <option value="geel">Geel 4</option>
+            <option value="geel">Geel 5</option>
+            <option value="groen">Groen 1</option>
+            <option value="groen">Groen 2</option>
+            <option value="groen">Groen 3</option>
+            <option value="groen">Groen 4</option>
+            <option value="groen">Groen 5</option>
+        </select>
+        <br>
+        <div class="code-input" id="codeInput1">
+            <p>Voer de code in voor Kaart 1:</p>
+            <input type="text" id="code1" placeholder="Code voor Kaart 1">
+        </div>
+        <div class="code-input" id="codeInput2">
+            <p>Voer de code in voor Kaart 2:</p>
+            <input type="text" id="code2" placeholder="Code voor Kaart 2">
+        </div>
+        <div class="code-input" id="codeInput3">
+            <p>Voer de code in voor Kaart 3:</p>
+            <input type="text" id="code3" placeholder="Code voor Kaart 3">
+        </div>
+        <div class="code-input" id="codeInput4">
+            <p>Voer de code in voor Kaart 4:</p>
+            <input type="text" id="code4" placeholder="Code voor Kaart 4">
+        </div>
+        <div class="code-input" id="codeInput5">
+            <p>Voer de code in voor Kaart 5:</p>
+            <input type="text" id="code5" placeholder="Code voor Kaart 5">
+        </div>
+        <br>
+        <button onclick="checkCode()">Ontgrendel</button>
+        <div id="message"></div>
+    </div>
+
+    <!-- Ontgrendelingsscherm -->
+    <div class="unlock-screen" id="unlockScreen">
+        <p>Slot ontgrendeld! 🎉</p>
+    </div>
+
+    <script>
+        // Toon de code-invoervelden zodra een kaart is geselecteerd
+        document.querySelectorAll('select').forEach((select, index) => {
+            select.addEventListener('change', () => {
+                if (select.value) {
+                    document.getElementById(`codeInput${index + 1}`).style.display = 'block';
+                } else {
+                    document.getElementById(`codeInput${index + 1}`).style.display = 'none';
+                }
+            });
+        });
+
+        // Functie om de codes te controleren
+        function checkCode() {
+            const cards = [
+                document.getElementById('card1').value,
+                document.getElementById('card2').value,
+                document.getElementById('card3').value,
+                document.getElementById('card4').value,
+                document.getElementById('card5').value
+            ];
+
+            const codes = [
+                document.getElementById('code1').value,
+                document.getElementById('code2').value,
+                document.getElementById('code3').value,
+                document.getElementById('code4').value,
+                document.getElementById('code5').value
+            ];
+
+            // Lijst met geldige codes per kleur
+            const validCodes = {
+                blauw: ['2435', 'sy67', 'ui89', '9c45', 'bj45'],
+                roze: ['Co59', 'Ki34', 'UG81', 'DE76', 'QE70'],
+                geel: ['OZ6M', '8340', 'SDEY', 'TX19', 'MPX6'],
+                groen: ['LOGT', 'VBX9', '3eR5', 'L2AG', '3eR5']
+            };
+
+            let correct = true;
+
+            // Controleer of elke code geldig is voor de geselecteerde kaart
+            for (let i = 0; i < cards.length; i++) {
+                if (!validCodes[cards[i]].includes(codes[i])) {
+                    correct = false;
+                    break;
+                }
+            }
+
+            if (correct) {
+                document.getElementById('message').textContent = 'Slot ontgrendeld! 🎉';
+                document.getElementById('lockContainer').classList.add('unlock-animation');
+                document.getElementById('unlockScreen').style.display = 'flex';
+
+                // Speel een geluidseffect af (optioneel)
+                const audio = new Audio('https://www.soundjay.com/buttons/button-3.mp3');
+                audio.play();
+
+                // Verberg het ontgrendelingsscherm na 3 seconden
+                setTimeout(() => {
+                    document.getElementById('unlockScreen').style.display = 'none';
+                }, 3000);
+            } else {
+                document.getElementById('message').textContent = 'Foute code, probeer opnieuw. ❌';
+            }
+        }
+    </script>
+</body>
+</html>
