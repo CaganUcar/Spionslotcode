@@ -254,19 +254,19 @@
             ];
 
             const codes = [
-                document.getElementById('code1').value,
-                document.getElementById('code2').value,
-                document.getElementById('code3').value,
-                document.getElementById('code4').value,
-                document.getElementById('code5').value
+                document.getElementById('code1').value.toLowerCase(), // Converteer naar kleine letters
+                document.getElementById('code2').value.toLowerCase(), // Converteer naar kleine letters
+                document.getElementById('code3').value.toLowerCase(), // Converteer naar kleine letters
+                document.getElementById('code4').value.toLowerCase(), // Converteer naar kleine letters
+                document.getElementById('code5').value.toLowerCase()  // Converteer naar kleine letters
             ];
 
-            // Lijst met geldige codes per kleur
+            // Lijst met geldige codes per kleur (ook omgezet naar kleine letters)
             const validCodes = {
-                blauw: ['2435', 'sy67', 'ui89', '9c45', 'bj45'],
-                roze: ['Co59', 'Ki34', 'UG81', 'DE76', 'QE70'],
-                geel: ['OZ6M', '8340', 'SDEY', 'TX19', 'MPX6'],
-                groen: ['LOGT', 'VBX9', '3eR5', 'L2AG', '3eR5']
+                blauw: ['2435', 'sy67', 'ui89', '9c45', 'bj45'].map(code => code.toLowerCase()),
+                roze: ['Co59', 'Ki34', 'UG81', 'DE76', 'QE70'].map(code => code.toLowerCase()),
+                geel: ['OZ6M', '8340', 'SDEY', 'TX19', 'MPX6'].map(code => code.toLowerCase()),
+                groen: ['LOGT', 'VBX9', '3eR5', 'L2AG', '3eR5'].map(code => code.toLowerCase())
             };
 
             let correct = true;
